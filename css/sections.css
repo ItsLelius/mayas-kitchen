@@ -1,0 +1,297 @@
+/* =============================================
+   MID-PAGE SECTIONS — stats strip, "what's
+   inside" category cards, preview carousel,
+   value props. Depends on variables.css, base.css.
+   ============================================= */
+
+.preview-section, .recipes-section, .value-section {
+  scroll-margin-top: 74px;
+}
+
+/* =============================================
+   STATS STRIP
+   ============================================= */
+.stats-strip {
+  background: var(--charcoal);
+  padding: 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 8px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  gap: 3px;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+}
+.stat-item:first-child .stat-num {
+  font-size: clamp(28px, 4.5vw, 44px);
+}
+.stat-lbl {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* =============================================
+   RECIPE PREVIEW CAROUSEL
+   ============================================= */
+.preview-section {
+  padding: 72px 0;
+  background: var(--cream-dark);
+}
+.carousel-wrap {
+  position: relative;
+  margin: 0 -20px;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  gap: 14px;
+  padding: 0 20px;
+  transition: transform 0.36s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform;
+}
+.carousel-slide {
+  min-width: calc(80vw - 20px);
+  max-width: 300px;
+  flex-shrink: 0;
+}
+.slide-img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 210 / 297; /* A4 portrait */
+  object-fit: contain;
+  background: var(--white);
+}
+.slide-cap {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--charcoal-80);
+  margin-top: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.carousel-btn {
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--charcoal);
+  transition: box-shadow 0.18s, transform 0.18s;
+  z-index: 2;
+}
+.carousel-btn:hover { box-shadow: var(--shadow-md); transform: translateY(-51%) scale(1.06); }
+.carousel-btn svg { width: 18px; height: 18px; stroke-width: 2; }
+.carousel-prev { left: 6px; }
+.carousel-next { right: 6px; }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 20px;
+}
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--charcoal-20);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+}
+.dot.active { background: var(--red); transform: scale(1.3); }
+.preview-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* Second carousel variant: light "recipe card" style, distinct from
+   the dark section-divider carousel above it */
+.recipes-section {
+  padding: 72px 0;
+  background: var(--white);
+}
+.carousel-wrap--light .carousel-btn {
+  border-color: rgba(184,146,58,0.35);
+  color: var(--gold);
+}
+.carousel-wrap--light .carousel-btn:hover { box-shadow: var(--shadow-md); }
+.carousel-wrap--light .dot.active { background: var(--gold); }
+
+.carousel-slide--card {
+  position: relative;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 14px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.recipe-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  z-index: 2;
+  box-shadow: var(--shadow-xs);
+}
+.slide-img--card {
+  border-radius: calc(var(--radius) - 4px);
+  box-shadow: none;
+}
+.carousel-slide--card .slide-cap {
+  text-align: left;
+  margin-top: 10px;
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+.slide-cap-tag {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* =============================================
+   VALUE PROPS
+   ============================================= */
+.value-section {
+  padding: 72px 0;
+  background: var(--white);
+}
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 36px;
+}
+.value-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-xs);
+}
+.value-icon-wrap {
+  width: 44px;
+  height: 44px;
+  background: var(--red-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.value-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--red);
+  stroke-width: 1.8;
+}
+.value-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.value-desc {
+  font-size: 15px;
+  color: var(--charcoal-60, var(--charcoal-50));
+  line-height: 1.65;
+}
+
+/* =============================================
+   TESTIMONIALS
+   ============================================= */
+.testimonials-section {
+  padding: 72px 0;
+  background: var(--cream);
+  scroll-margin-top: 74px;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 36px;
+}
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-xs);
+}
+.testimonial-stars { display: flex; gap: 2px; }
+.t-star { width: 14px; height: 14px; fill: #F5A623; color: #F5A623; stroke-width: 0; }
+.testimonial-quote {
+  font-size: 14.5px;
+  color: var(--charcoal-80);
+  line-height: 1.65;
+  font-style: italic;
+}
+.testimonial-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--charcoal-50);
+}
+/* =============================================
+   TABLET 640+
+   ============================================= */
+@media (min-width: 640px) {
+  .value-grid { grid-template-columns: repeat(2, 1fr); }
+  .carousel-slide { min-width: 300px; max-width: 300px; }
+  .carousel-wrap { margin: 0; }
+  .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =============================================
+   DESKTOP 900+
+   ============================================= */
+@media (min-width: 900px) {
+  .eyebrow { display: block; }
+  .section-title { text-align: left; }
+  .section-sub { margin-left: 0; }
+  .value-grid { grid-template-columns: repeat(4, 1fr); }
+}

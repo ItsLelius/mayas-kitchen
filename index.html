@@ -7,18 +7,52 @@
   <title>Maya's Kitchen Secrets — 300 Recipes for $9.99</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Styles split by concern — see css/README.txt -->
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <link rel="stylesheet" href="css/hero.css"/>
+  <link rel="stylesheet" href="css/sections.css"/>
+  <link rel="stylesheet" href="css/cta.css"/>
 </head>
-<body>
+<body id="top">
 
   <!-- ===================== NAV ===================== -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <span class="nav-brand">Maya's Kitchen Secrets</span>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#top" class="nav-link">Home</a>
+        <a href="#inside" class="nav-link">What's Inside</a>
+        <a href="#recipes" class="nav-link">Free Sample</a>
+        <a href="#why" class="nav-link">Why</a>
+        <a href="https://payhip.com/YOUR_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          Get the Book — $9.99
+        </a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+        <i data-lucide="menu" class="nav-toggle-icon icon-menu"></i>
+        <i data-lucide="x" class="nav-toggle-icon icon-close"></i>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile menu overlay + panel (outside <nav> so it can cover the whole viewport) -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#top" class="nav-mobile-link">Home</a>
+    <a href="#inside" class="nav-mobile-link">What's Inside</a>
+    <a href="#recipes" class="nav-mobile-link">Free Sample</a>
+    <a href="#why" class="nav-mobile-link">Why</a>
+    <a href="https://payhip.com/YOUR_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-lg nav-mobile-cta">
+      Get the Book — $9.99
+    </a>
+  </div>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero">
@@ -27,7 +61,7 @@
       <div class="hero-text">
         <div class="badge-pill">
           <i data-lucide="flame" class="icon-sm"></i>
-          Over <span id="buyers-count">1,247</span> copies sold
+          Over <span class="buyers-pop"><span id="buyers-count">1,247</span></span> copies sold
         </div>
 
         <h1 class="hero-headline">
@@ -36,7 +70,7 @@
         </h1>
 
         <p class="hero-sub">
-          From cheesy weeknight dinners to showstopper desserts — every recipe your family will ask for again, all in one beautifully designed ebook.
+          From cheesy weeknight dinners to showstopper desserts — every recipe your family will ask for again, all in one beautifully designed book.
         </p>
 
         <!-- Stars -->
@@ -78,14 +112,40 @@
         </div>
       </div>
 
-      <!-- Book / Maya fade -->
-      <div class="hero-visual">
-        <div class="visual-frame">
+      <!-- Book / Maya fade + floating promo badges -->
+      <div class="hero-visual" id="heroVisual">
+        <div class="visual-frame" id="visualFrame">
           <img src="assets/images/book-cover.png" alt="Maya's Kitchen Secrets cookbook cover" class="visual-img active" id="img-book"/>
           <img src="assets/images/maya-hero.png" alt="Maya holding the cookbook" class="visual-img" id="img-maya"/>
+          <div class="visual-shine"></div>
           <div class="visual-badge">
-            <span class="vbadge-num">300</span>
-            <span class="vbadge-label">Recipes</span>
+            <svg viewBox="0 0 200 200" class="badge-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="badgeGrad" cx="35%" cy="30%" r="75%">
+                  <stop offset="0%" stop-color="#E14A3D"/>
+                  <stop offset="100%" stop-color="#A93226"/>
+                </radialGradient>
+              </defs>
+              <path d="M 182.0,100.0 L 189.69,104.27 L 189.39,108.54 L 181.17,111.67 L 172.86,114.04 L 172.11,117.49 L 178.68,123.1 L 184.86,129.37 L 183.36,133.37 L 174.59,134.06 L 165.96,134.0 L 164.26,137.1 L 168.98,144.33 L 173.14,152.09 L 170.58,155.51 L 161.97,153.7 L 153.71,151.21 L 151.21,153.71 L 153.7,161.97 L 155.51,170.58 L 152.09,173.14 L 144.33,168.98 L 137.1,164.26 L 134.0,165.96 L 134.06,174.59 L 133.37,183.36 L 129.37,184.86 L 123.1,178.68 L 117.49,172.11 L 114.04,172.86 L 111.67,181.17 L 108.54,189.39 L 104.27,189.69 L 100.0,182.0 L 96.47,174.12 L 92.95,173.87 L 88.33,181.17 L 83.01,188.17 L 78.83,187.26 L 76.9,178.68 L 75.73,170.12 L 72.42,168.89 L 65.94,174.59 L 58.85,179.81 L 55.1,177.76 L 55.67,168.98 L 56.96,160.45 L 54.13,158.33 L 46.3,161.97 L 38.03,164.99 L 35.01,161.97 L 38.03,153.7 L 41.67,145.87 L 39.55,143.04 L 31.02,144.33 L 22.24,144.9 L 20.19,141.15 L 25.41,134.06 L 31.11,127.58 L 29.88,124.27 L 21.32,123.1 L 12.74,121.17 L 11.83,116.99 L 18.83,111.67 L 26.13,107.05 L 25.88,103.53 L 18.0,100.0 L 10.31,95.73 L 10.61,91.46 L 18.83,88.33 L 27.14,85.96 L 27.89,82.51 L 21.32,76.9 L 15.14,70.63 L 16.64,66.63 L 25.41,65.94 L 34.04,66.0 L 35.74,62.9 L 31.02,55.67 L 26.86,47.91 L 29.42,44.49 L 38.03,46.3 L 46.29,48.79 L 48.79,46.29 L 46.3,38.03 L 44.49,29.42 L 47.91,26.86 L 55.67,31.02 L 62.9,35.74 L 66.0,34.04 L 65.94,25.41 L 66.63,16.64 L 70.63,15.14 L 76.9,21.32 L 82.51,27.89 L 85.96,27.14 L 88.33,18.83 L 91.46,10.61 L 95.73,10.31 L 100.0,18.0 L 103.53,25.88 L 107.05,26.13 L 111.67,18.83 L 116.99,11.83 L 121.17,12.74 L 123.1,21.32 L 124.27,29.88 L 127.58,31.11 L 134.06,25.41 L 141.15,20.19 L 144.9,22.24 L 144.33,31.02 L 143.04,39.55 L 145.87,41.67 L 153.7,38.03 L 161.97,35.01 L 164.99,38.03 L 161.97,46.3 L 158.33,54.13 L 160.45,56.96 L 168.98,55.67 L 177.76,55.1 L 179.81,58.85 L 174.59,65.94 L 168.89,72.42 L 170.12,75.73 L 178.68,76.9 L 187.26,78.83 L 188.17,83.01 L 181.17,88.33 L 173.87,92.95 L 174.12,96.47 Z" fill="url(#badgeGrad)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2.5" stroke-dasharray="2.5 6.5"/>
+              <text x="100" y="97" text-anchor="middle" class="badge-svg-num">300</text>
+              <text x="100" y="122" text-anchor="middle" class="badge-svg-lbl">RECIPES</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-1">
+          <div class="floating-icon-wrap"><i data-lucide="clock" class="floating-icon"></i></div>
+          <div class="floating-info">
+            <span class="floating-title">Launch Price</span>
+            <span class="floating-sub">Ends This Week</span>
+          </div>
+        </div>
+        <div class="floating-card floating-card-2">
+          <div class="floating-icon-wrap"><i data-lucide="badge-check" class="floating-icon"></i></div>
+          <div class="floating-info">
+            <span class="floating-title">Lifetime Updates</span>
+            <span class="floating-sub">Included Free</span>
           </div>
         </div>
       </div>
@@ -115,129 +175,143 @@
     </div>
   </div>
 
-  <!-- ===================== WHAT'S INSIDE ===================== -->
-  <section class="inside-section">
+
+  <!-- ===================== SECTIONS CAROUSEL (category highlights) ===================== -->
+  <section class="preview-section" id="inside">
     <div class="container">
       <p class="eyebrow">What's Inside</p>
-      <h2 class="section-title">Every meal, every occasion</h2>
-      <div class="categories-grid">
+      <h2 class="section-title">Explore every category</h2>
+      <p class="section-sub">From sunrise breakfasts to Maya's signature specials — 10 sections, each with its own bold, restaurant-style theme.</p>
 
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="sunrise" class="cat-icon"></i></div>
-          <span class="cat-name">Rise &amp; Shine</span>
-          <span class="cat-count">Breakfast &amp; Brunch</span>
+      <div class="carousel-block">
+        <div class="carousel-wrap carousel-wrap--dark">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section1.png" alt="Rise & Shine section divider" class="slide-img"/>
+              <p class="slide-cap">Rise &amp; Shine</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section2.png" alt="Midday Cravings section divider" class="slide-img"/>
+              <p class="slide-cap">Midday Cravings</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section3.png" alt="Dinner Time section divider" class="slide-img"/>
+              <p class="slide-cap">Dinner Time</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section4.png" alt="Fast Food Secrets section divider" class="slide-img"/>
+              <p class="slide-cap">Fast Food Secrets</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section5.png" alt="The Bake Shop section divider" class="slide-img"/>
+              <p class="slide-cap">The Bake Shop</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section6.png" alt="Dessert Hour section divider" class="slide-img"/>
+              <p class="slide-cap">Dessert Hour</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section7.png" alt="Something Sweet section divider" class="slide-img"/>
+              <p class="slide-cap">Something Sweet</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section8.png" alt="Sip & Enjoy section divider" class="slide-img"/>
+              <p class="slide-cap">Sip &amp; Enjoy</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section9.png" alt="Little Bites section divider" class="slide-img"/>
+              <p class="slide-cap">Little Bites</p>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/images/sections/section10.png" alt="Maya's Specials section divider" class="slide-img"/>
+              <p class="slide-cap">Maya's Specials</p>
+            </div>
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous slide">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-next" aria-label="Next slide">
+            <i data-lucide="chevron-right"></i>
+          </button>
         </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="salad" class="cat-icon"></i></div>
-          <span class="cat-name">Midday Cravings</span>
-          <span class="cat-count">Lunch &amp; Light Meals</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="utensils" class="cat-icon"></i></div>
-          <span class="cat-name">Dinner Time</span>
-          <span class="cat-count">Hearty Dinners &amp; Family Meals</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="sandwich" class="cat-icon"></i></div>
-          <span class="cat-name">Fast Food Secrets</span>
-          <span class="cat-count">Copycat Favorites</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="croissant" class="cat-icon"></i></div>
-          <span class="cat-name">The Bake Shop</span>
-          <span class="cat-count">Breads, Pastries &amp; Baked Goods</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="cake-slice" class="cat-icon"></i></div>
-          <span class="cat-name">Dessert Hour</span>
-          <span class="cat-count">Plated Desserts &amp; Showstoppers</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="candy" class="cat-icon"></i></div>
-          <span class="cat-name">Something Sweet</span>
-          <span class="cat-count">Confections &amp; Candies</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="cup-soda" class="cat-icon"></i></div>
-          <span class="cat-name">Sip &amp; Enjoy</span>
-          <span class="cat-count">Drinks, Smoothies &amp; Beverages</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="cookie" class="cat-icon"></i></div>
-          <span class="cat-name">Little Bites</span>
-          <span class="cat-count">Snacks, Appetizers &amp; Party Food</span>
-        </div>
-        <div class="cat-card">
-          <div class="cat-icon-wrap"><i data-lucide="chef-hat" class="cat-icon"></i></div>
-          <span class="cat-name">Maya's Specials</span>
-          <span class="cat-count">Signature Recipes</span>
-        </div>
-
+        <div class="carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== RECIPE PREVIEW ===================== -->
-  <section class="preview-section">
+  <!-- ===================== RECIPE PREVIEW CAROUSEL (real pages + download) ===================== -->
+  <section class="recipes-section" id="recipes">
     <div class="container">
-      <p class="eyebrow">Free Preview</p>
-      <h2 class="section-title">See inside the book</h2>
+      <p class="eyebrow">Free Sample</p>
+      <h2 class="section-title">Get a taste of 10 real recipes</h2>
       <p class="section-sub">Every recipe gets a full page — cinematic hero photo, ingredients, step-by-step instructions, chef tip, and the science behind why it works.</p>
 
-      <div class="carousel-wrap">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-1.png" alt="Breakfast recipe page" class="slide-img"/>
-            <p class="slide-cap">Rise &amp; Shine</p>
+      <div class="carousel-block">
+        <div class="carousel-wrap carousel-wrap--light">
+          <div class="carousel-track">
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe1.png" alt="Fluffy Belgian Waffles recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Banana Foster French Toast <span class="slide-cap-tag">Rise &amp; Shine</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe2.png" alt="Creamy Chicken Caesar Wrap recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Lobster Roll <span class="slide-cap-tag">Midday Cravings</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe3.png" alt="Garlic Butter Steak Bites recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Chicken Pot Pie <span class="slide-cap-tag">Dinner Time</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe4.png" alt="Copycat Crunchwrap Supreme recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Classic Cinnamon Rolls <span class="slide-cap-tag">Fast Food Secrets</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe5.png" alt="Cinnamon Swirl Brioche recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Pull-Apart Cheesy Garlic Bread <span class="slide-cap-tag">The Bake Shop</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe6.png" alt="Molten Chocolate Lava Cake recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Tiramisu - Authentic Italian Method <span class="slide-cap-tag">Dessert Hour</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe7.png" alt="Salted Caramel Truffles recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Dark Chocolate Truffles <span class="slide-cap-tag">Something Sweet</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe8.png" alt="Mango Passionfruit Smoothie recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Salted Iced Caramel Iced Coffee <span class="slide-cap-tag">Sip &amp; Enjoy</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe9.png" alt="Crispy Parmesan Bites recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Bacon-Wrapped Dates With Goat Cheese <span class="slide-cap-tag">Little Bites</span></p>
+            </div>
+            <div class="carousel-slide carousel-slide--card">
+              <span class="recipe-tag">Free Preview</span>
+              <img src="assets/images/recipes/recipe10.png" alt="Maya's Secret Garlic Noodles recipe page" class="slide-img slide-img--card"/>
+              <p class="slide-cap">Maya's Secret Meatballs <span class="slide-cap-tag">Maya's Specials</span></p>
+            </div>
           </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-2.png" alt="Lunch recipe page" class="slide-img"/>
-            <p class="slide-cap">Midday Cravings</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-3.png" alt="Dinner recipe page" class="slide-img"/>
-            <p class="slide-cap">Dinner Time</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-4.png" alt="Fast food recipe page" class="slide-img"/>
-            <p class="slide-cap">Fast Food Secrets</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-5.png" alt="Bake shop recipe page" class="slide-img"/>
-            <p class="slide-cap">The Bake Shop</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-6.png" alt="Dessert recipe page" class="slide-img"/>
-            <p class="slide-cap">Dessert Hour</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-7.png" alt="Confections recipe page" class="slide-img"/>
-            <p class="slide-cap">Something Sweet</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-8.png" alt="Drinks recipe page" class="slide-img"/>
-            <p class="slide-cap">Sip &amp; Enjoy</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-9.png" alt="Snacks recipe page" class="slide-img"/>
-            <p class="slide-cap">Little Bites</p>
-          </div>
-          <div class="carousel-slide">
-            <img src="assets/images/recipes/preview-10.png" alt="Signature recipe page" class="slide-img"/>
-            <p class="slide-cap">Maya's Specials</p>
-          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous slide">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-next" aria-label="Next slide">
+            <i data-lucide="chevron-right"></i>
+          </button>
         </div>
-        <button class="carousel-btn carousel-prev" id="prevBtn" aria-label="Previous slide">
-          <i data-lucide="chevron-left"></i>
-        </button>
-        <button class="carousel-btn carousel-next" id="nextBtn" aria-label="Next slide">
-          <i data-lucide="chevron-right"></i>
-        </button>
+        <div class="carousel-dots"></div>
       </div>
-      <div class="carousel-dots" id="carouselDots"></div>
 
       <div class="preview-cta">
-        <a href="sample/mayas-kitchen-sample.pdf" download class="btn btn-outline btn-md">
+        <a href="sample/mayas-kitchen-sample.pdf" download class="btn btn-primary btn-md">
           <i data-lucide="download" class="icon-sm"></i>
           Download 10 Free Sample Recipes
         </a>
@@ -246,7 +320,7 @@
   </section>
 
   <!-- ===================== VALUE PROPS ===================== -->
-  <section class="value-section">
+  <section class="value-section" id="why">
     <div class="container">
       <p class="eyebrow">Why This Book</p>
       <h2 class="section-title">Built to actually be used</h2>
@@ -283,11 +357,71 @@
     </div>
   </section>
 
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials-section" id="reviews">
+    <div class="container">
+      <p class="eyebrow">What People Are Saying</p>
+      <h2 class="section-title">Readers love how easy it is to cook from this book</h2>
+      <p class="section-sub">Real home cooks are sharing how they stopped wasting time and started making meals their whole family actually asks for.</p>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">“I made the garlic noodles on a weeknight and my family thought we were at a restaurant. The instructions are so clear — I cooked without the stress.”</p>
+          <p class="testimonial-author">— Mia R., San Diego</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">“The sample recipes were enough to convince me. My weekend brunch looked incredible, and I loved that every dish is built to be simple and satisfying.”</p>
+          <p class="testimonial-author">— Tasha L., Austin</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" class="t-star" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">“This cookbook finally gave me a recipe collection I can actually use. The step-by-step layout makes every recipe feel easy, even when I’m cooking for a crowd.”</p>
+          <p class="testimonial-author">— Jonah M., Boston</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== FINAL CTA ===================== -->
   <section class="cta-section">
     <div class="container cta-inner">
-      <h2 class="cta-headline">300 Recipes.<br/>$9.99.<br/>Yours forever.</h2>
+      <div class="cta-pill">
+        <i data-lucide="star" class="cta-pill-star"></i><i data-lucide="star" class="cta-pill-star"></i><i data-lucide="star" class="cta-pill-star"></i><i data-lucide="star" class="cta-pill-star"></i><i data-lucide="star" class="cta-pill-star"></i>
+        Best Seller Cookbook
+      </div>
+      <h2 class="cta-headline">
+        300 Recipes.<br/>
+        $9.99.<br/>
+        <span class="cta-highlight">Yours forever.</span>
+      </h2>
       <p class="cta-sub">Instant PDF download. Read on your phone, tablet, laptop, or print it out.</p>
+      <p class="cta-anchor">
+        <span class="cta-price-was">$19.99</span>
+        <span class="cta-price-now">$9.99</span>
+        <span class="cta-anchor-note">launch price</span>
+      </p>
       <a href="https://payhip.com/YOUR_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-wide">
         Buy Now — $9.99
       </a>
@@ -314,6 +448,11 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Scripts split by concern — see js/README.txt -->
+  <script src="js/icons.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/reveal.js"></script>
 </body>
 </html>
